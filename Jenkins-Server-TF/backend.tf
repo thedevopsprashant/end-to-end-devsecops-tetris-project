@@ -1,6 +1,6 @@
 terraform {
   backend "s3" {
-    bucket       = "prashant-tf-bucket"
+    bucket       = "prashant-tfstates-bucket"
     region       = "ap-south-1"
     key          = "Jenkins-Server-TF/terraform.tfstate"
     encrypt      = true

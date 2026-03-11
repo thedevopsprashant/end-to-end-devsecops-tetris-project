@@ -1,49 +1,61 @@
-resource "aws_vpc" "vpc" {
-  cidr_block = "10.0.0.0/16"
 
-  tags = {
-    Name = var.vpc-name
-  }
+module "vpc" {
+  source = "github.com/thedevopsprashant/terraform-aws-modules//modules/vpc?ref=v1.1.7"
+
+  vpc_cidr_block     = "10.0.0.0/16"
+  public_subnet      = ["10.0.1.0/24"]
+  env                = "jenkins"
+  cluster_name       = "test"
+
 }
 
-resource "aws_internet_gateway" "igw" {
-  vpc_id = aws_vpc.vpc.id
 
-  tags = {
-    Name = var.igw-name
-  }
-}
+# resource "aws_vpc" "vpc" {
+#   cidr_block = "10.0.0.0/16"
 
-resource "aws_subnet" "public-subnet" {
-  vpc_id                  = aws_vpc.vpc.id
-  cidr_block              = "10.0.1.0/24"
-  availability_zone       = "us-east-1a"
-  map_public_ip_on_launch = true
+#   tags = {
+#     Name = var.vpc-name 
+#   }
+# }
 
-  tags = {
-    Name = var.subnet-name
-  }
-}
+# resource "aws_internet_gateway" "igw" {
+#   vpc_id = aws_vpc.vpc.id
 
-resource "aws_route_table" "rt" {
-  vpc_id = aws_vpc.vpc.id
-  route {
-    cidr_block = "0.0.0.0/0"
-    gateway_id = aws_internet_gateway.igw.id
-  }
+#   tags = {
+#     Name = var.igw-name
+#   }
+# }
 
-  tags = {
-    Name = var.rt-name
-  }
-}
+# resource "aws_subnet" "public-subnet" {
+#   vpc_id                  = aws_vpc.vpc.id
+#   cidr_block              = "10.0.1.0/24"
+#   availability_zone       = "ap-south-1a"
+#   map_public_ip_on_launch = true
 
-resource "aws_route_table_association" "rt-association" {
-  route_table_id = aws_route_table.rt.id
-  subnet_id      = aws_subnet.public-subnet.id
-}
+#   tags = {
+#     Name = var.subnet-name 
+#   }
+# }
+
+# resource "aws_route_table" "rt" {
+#   vpc_id = aws_vpc.vpc.id
+#   route {
+#     cidr_block = "0.0.0.0/0"
+#     gateway_id = aws_internet_gateway.igw.id
+#   }
+
+#   tags = {
+#     Name = var.rt-name
+#   }
+# }
+
+# resource "aws_route_table_association" "rt-association" {
+#   route_table_id = aws_route_table.rt.id
+#   subnet_id      = aws_subnet.public-subnet.id
+# }
 
 resource "aws_security_group" "security-group" {
-  vpc_id      = aws_vpc.vpc.id
+  vpc_id      = module.vpc.vpc_id
   description = "Allowing Jenkins, Sonarqube, SSH Access"
 
   ingress = [
