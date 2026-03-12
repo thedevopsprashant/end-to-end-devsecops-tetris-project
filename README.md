@@ -44,3 +44,15 @@ Welcome to an immersive DevSecOps learning experience! This project guides you t
 3. Create Jenkins pipeline to create the EKS cluster using terraform. In folder 'Jenkins-Pipeline-Code', use Jenkinsfile-EKS-Terraform to configure the jenkins pipeline.
 4. Configure the App pipeline, In folder 'Jenkins-Pipeline-Code', use Jenkinsfile-
 5. Install ArgoCD and ALB Controller using Helm on EKS cluster.
+
+aws configure
+aws eks update-kubeconfig --name Tetris-EKS-Cluster --region ap-south-1
+# Install helm on Ubuntu
+sudo snap install helm --classic
+helm version
+
+# Install argocd on Ubuntu
+kubectl create namespace argocd
+kubectl apply -n argocd -f https://raw.githubusercontent.com/argoproj/argo-cd/stable/manifests/install.yaml
+kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}'
+kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d && echo
