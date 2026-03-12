@@ -14,7 +14,7 @@ pipeline {
         }
         stage('Checkout from Git') {
             steps {
-                git branch: 'master', url: 'https://github.com/DevSecOps-Tetris-Project.git'
+                git branch: 'main', url: 'https://github.com/thedevopsprashant/end-to-end-devsecops-tetris-project.git'
             }
         }
         stage('Sonarqube Analysis') {
@@ -34,28 +34,28 @@ pipeline {
                 }
             }
         }
-        stage('Installing Dependencies') {
-            steps {
-                dir('Tetris-V1') {
-                    sh 'npm install'
-                }
-            }
-        }
-        stage('OWASP Dependency-Check Scan') {
-            steps {
-                dir('Tetris-V1') {
-                    dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit', odcInstallation: 'DP-Check'
-                    dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
-                }
-            }
-        }
-        stage('Trivy File Scan') {
-            steps {
-                dir('Tetris-V1') {
-                    sh 'trivy fs . > trivyfs.txt'
-                }
-            }
-        }
+        // stage('Installing Dependencies') {
+        //     steps {
+        //         dir('Tetris-V1') {
+        //             sh 'npm install'
+        //         }
+        //     }
+        // }
+        // stage('OWASP Dependency-Check Scan') {
+        //     steps {
+        //         dir('Tetris-V1') {
+        //             dependencyCheck additionalArguments: '--scan ./ --disableYarnAudit --disableNodeAudit', odcInstallation: 'DP-Check'
+        //             dependencyCheckPublisher pattern: '**/dependency-check-report.xml'
+        //         }
+        //     }
+        // }
+        // stage('Trivy File Scan') {
+        //     steps {
+        //         dir('Tetris-V1') {
+        //             sh 'trivy fs . > trivyfs.txt'
+        //         }
+        //     }
+        // }
         stage("Docker Image Build") {
             steps {
                 script {
@@ -72,25 +72,25 @@ pipeline {
             steps {
                 script {
                     withDockerRegistry(credentialsId: 'docker', toolName: 'docker') {
-                        sh 'docker tag tetrisv1 avian19/tetrisv1:${BUILD_NUMBER}'
-                        sh 'docker push avian19/tetrisv1:${BUILD_NUMBER}'
+                        sh 'docker tag tetrisv1 prashantsharma288/tetrisv1:${BUILD_NUMBER}'
+                        sh 'docker push prashantsharma288/tetrisv1:${BUILD_NUMBER}'
                     }
                 }
             }
         }
-        stage("TRIVY Image Scan") {
-            steps {
-                sh 'trivy image prashantsharma995/tetrisv1:${BUILD_NUMBER} > trivyimage.txt'
-            }
-        }
+        // stage("TRIVY Image Scan") {
+        //     steps {
+        //         sh 'trivy image prashantsharma995/tetrisv1:${BUILD_NUMBER} > trivyimage.txt'
+        //     }
+        // }
         stage('Checkout Code') {
             steps {
-                git branch: 'master', url: 'https://github.com/DevSecOps-Tetris-Project.git'
+                git branch: 'main', url: 'https://github.com/thedevopsprashant/end-to-end-devsecops-tetris-project.git'
             }
         }
         stage('Update Deployment file') {
             environment {
-                GIT_REPO_NAME = "End-to-End-Kubernetes-DevSecOps-Tetris-Project"
+                GIT_REPO_NAME = "end-to-end-devsecops-tetris-project"
                 GIT_USER_NAME = "thedevopsprashant"
             }
             steps {

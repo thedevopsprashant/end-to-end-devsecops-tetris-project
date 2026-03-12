@@ -37,3 +37,10 @@ Welcome to an immersive DevSecOps learning experience! This project guides you t
 
 ## Acknowledgments 🙌
    Special Thanks to the open-source community and Aman Pathak for the medium blog, the contributors who make learning and collaboration an incredible journey.
+
+## Steps To Do the Practical
+1. Go to Jenkins-Server-TF, Create the Jenkins server using TF - Run tf init, tf plan, tf apply.
+2. Now setup the jenkins server install required addons, Install and Configure tools/plugins on Jenkins server.
+3. Create Jenkins pipeline to create the EKS cluster using terraform. In folder 'Jenkins-Pipeline-Code', use Jenkinsfile-EKS-Terraform to configure the jenkins pipeline.
+4. Configure the App pipeline, In folder 'Jenkins-Pipeline-Code', use Jenkinsfile-
+5. Install ArgoCD and ALB Controller using Helm on EKS cluster.

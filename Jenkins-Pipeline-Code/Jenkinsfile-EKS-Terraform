@@ -1,6 +1,6 @@
 properties([
     parameters([
-        string(defaultValue: 'variables.tfvars', description: 'Specify the file name', name: 'File-Name'),
+        string(defaultValue: 'terraform.tfvars', description: 'Specify the file name', name: 'File-Name'),
         choice(choices: ['plan', 'apply', 'destroy'], description: 'Select Terraform action', name: 'Terraform-Action')
     ])
 ])
@@ -10,7 +10,7 @@ pipeline {
     stages {
         stage('Checkout from Git') {
             steps {
-                git branch: 'master', url: 'https://github.com/ct.git'
+                git branch: 'main', url: 'https://github.com/thedevopsprashant/end-to-end-devsecops-tetris-project.git'
             }
         }
         stage('Initializing Terraform') {
