@@ -53,10 +53,10 @@ Welcome to an immersive DevSecOps learning experience! This project guides you t
 * docker api
 * sonarqube scanner
 
-- Add Jenkins global credentials for: aws-key, sonar-token, github, docker.
-- Configure Jenkins System tools for Sonar, docker.
-- Configure Project and generate token on Sonar.
-- Create Dockerhub repo for the App.
+ Add Jenkins global credentials for: aws-key, sonar-token, github, docker. \
+ Configure Jenkins System tools for Sonar, docker. \
+ Configure Project and generate token on Sonar. \
+ Create Dockerhub repo for the App.
 
 3. Create/Configure Jenkins pipeline to create the EKS cluster using terraform. In folder 'Jenkins-Pipeline-Code', use Jenkinsfile-EKS-Terraform to configure the jenkins pipeline. Then Run the pipeline to create EKS Cluster. This will take around 15mins.
 4. Configure the App pipeline, In folder 'Jenkins-Pipeline-Code', use Jenkinsfile-TetrisV1. Run the pipeline
