@@ -43,9 +43,9 @@ Welcome to an immersive DevSecOps learning experience! This project guides you t
 1. Go to Jenkins-Server-TF, Create the Jenkins server using TF - Run tf init, tf plan, tf apply.
 2. Now setup the jenkins server install required addons, Install and Configure tools/plugins on Jenkins server.
 ### Install Jenkins Plugins:
- aws creds
- pipeline step
- pipeline stage view
+* aws creds
+* pipeline step
+* pipeline stage view
  rebuilder
  docker 
  docker common
