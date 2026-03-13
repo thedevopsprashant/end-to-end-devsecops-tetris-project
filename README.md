@@ -78,6 +78,10 @@ kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d && echo
 ```
 
+7. Open and Login in ArgoCd, Create a App on ArgoCd add the /deployments files for the deployment. Create it.
+8. Open AWS, Get the Loadbalancer DNS for the app LB, Access it. Tetris Game should be accessible.
+
+
 **Optional: Docker Commands to build multi-arch supported Docker Images:**
 ``` bash
 docker buildx build --platform linux/amd64 -t prashantsharma288/tetrisv1:2 .
