@@ -43,19 +43,19 @@ Welcome to an immersive DevSecOps learning experience! This project guides you t
 1. Go to Jenkins-Server-TF, Create the Jenkins server using TF - Run tf init, tf plan, tf apply.
 2. Now setup the jenkins server install required addons, Install and Configure tools/plugins on Jenkins server.
 ### Install Jenkins Plugins:
-aws creds
-pipeline step
-pipeline stage view
-rebuilder
-docker 
-docker common
-docker api
-sonarqube scanner
+ aws creds
+ pipeline step
+ pipeline stage view
+ rebuilder
+ docker 
+ docker common
+ docker api
+ sonarqube scanner
 
-Add Jenkins global credentials for: aws-key, sonar-token, github, docker.
-Configure Jenkins System tools for Sonar, docker.
-Configure Project and generate token on Sonar.
-Create Dockerhub repo for the App.
+ Add Jenkins global credentials for: aws-key, sonar-token, github, docker.
+ Configure Jenkins System tools for Sonar, docker.
+ Configure Project and generate token on Sonar.
+ Create Dockerhub repo for the App.
 
 3. Create/Configure Jenkins pipeline to create the EKS cluster using terraform. In folder 'Jenkins-Pipeline-Code', use Jenkinsfile-EKS-Terraform to configure the jenkins pipeline. Then Run the pipeline to create EKS Cluster. This will take around 15mins.
 4. Configure the App pipeline, In folder 'Jenkins-Pipeline-Code', use Jenkinsfile-TetrisV1. Run the pipeline
@@ -77,7 +77,7 @@ kubectl patch svc argocd-server -n argocd -p '{"spec": {"type": "LoadBalancer"}}
 kubectl -n argocd get secret argocd-initial-admin-secret -o jsonpath="{.data.password}" | base64 -d && echo
 ```
 
-*** Optional: Docker Commands to build multi-arch supported Docker Images: ***
+**Optional: Docker Commands to build multi-arch supported Docker Images:**
 ``` bash
 docker buildx build --platform linux/amd64 -t prashantsharma288/tetrisv1:2 .
 docker buildx build --platform linux/amd64,linux/arm64 -t prashantsharma288/tetrisv1:2 .
