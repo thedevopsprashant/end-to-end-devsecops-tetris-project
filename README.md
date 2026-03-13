@@ -11,7 +11,7 @@ Welcome to an immersive DevSecOps learning experience! This project guides you t
 1. **EKS-TF:** Explore Terraform scripts for deploying EKS clusters on AWS.
 2. **Jenkins-Pipeline-Code:** Jenkins pipeline code for automated CI/CD.
 3. **Jenkins-Server-TF:** Terraform scripts for provisioning Jenkins servers on AWS EC2.
-4. **Manifest-file:** Kubernetes manifest files for Tetris application deployment.
+4. **deployments:** Kubernetes manifest files for Tetris application deployment.
 5. **Tetris-V1:** Initial version of the Tetris game application.
 6. **Tetris-V2:** Enhanced version of the Tetris game application.
 

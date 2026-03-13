@@ -94,7 +94,7 @@ pipeline {
                 GIT_USER_NAME = "thedevopsprashant"
             }
             steps {
-                dir('Manifest-file') {
+                dir('deployments') {
                     withCredentials([string(credentialsId: 'github', variable: 'GITHUB_TOKEN')]) {
                         sh '''
                             git config user.email "thedevopsprashant@gmail.com"
