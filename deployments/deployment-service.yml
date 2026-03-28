@@ -23,6 +23,12 @@ apiVersion: v1
 kind: Service
 metadata:
   name: tetris-service
+  annotations:
+    # This is CRITICAL for the AWS LB Controller to manage the NLB
+    service.beta.kubernetes.io/aws-load-balancer-type: "external"
+    service.beta.kubernetes.io/aws-load-balancer-nlb-target-type: "ip"
+    # Set to "internal" if you tagged subnets with internal-elb
+    service.beta.kubernetes.io/aws-load-balancer-scheme: "internet-facing"
 spec:
   selector:
     app: tetris
